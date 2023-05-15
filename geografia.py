@@ -1,3 +1,6 @@
+# dictionary that relates the geographical locations of the dataset houses to coordinates.
+# obtained using geopy.geocoders
+
 dict_geo = {'a coruna españa': (43.361148, -8.409827),
  'alava araba españa': (42.910532, -2.754306),
  'albacete españa': (38.995097, -1.86197),
