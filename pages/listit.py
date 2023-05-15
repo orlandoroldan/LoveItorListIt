@@ -6,12 +6,13 @@ from geopy.geocoders import Nominatim
 from features import features_detected
 from geografia_to_provincia import return_province
 
+score_to_r1f6 = {"Disrepair" : 6, "Poor" : 5, "Average" : 4, "Good" : 3, "Excellent" : 2, "Luxury" : 1}
 
 def find_top_five_houses(new_house, df):
     """Returns top 5 most similar houses in dataframe"""
 
     # primer fem amb les propietats importants
-    df_houses = df[new_house.price < df.price*1.17]
+    df_houses = df[new_house.price[0] < df.price*1.17]
     
     similarity_scores_200 = cosine_similarity(new_house[["price","square_meters", "bedrooms", "bathrooms", "image_data.r1f6.property"]], df_houses[["price","square_meters", "bedrooms", "bathrooms", "image_data.r1f6.property"]]) # afegir noms columnes
     most_similar_indexes_200 = similarity_scores_200.argsort()[0,::-1][:200]
@@ -22,8 +23,6 @@ def find_top_five_houses(new_house, df):
     top_similar_houses_5 = df.loc[most_similar_indexes_5]
 
     return top_similar_houses_5
-
-
 
 
 def main():
@@ -59,16 +58,18 @@ def main():
     # Input del que volem
     price = st.number_input("Precio", min_value = 0)
 
-    location_string = st.text_input("Localización")
-    geolocator = Nominatim(user_agent="geoapiExercises")
-    address = geolocator.geocode(location_string)
+    # location_string = st.text_input("Localización")
+    # geolocator = Nominatim(user_agent="geoapiExercises")
+    # address = geolocator.geocode(location_string)
 
     square_meters = st.number_input("Metros cuadrados (aproximado)", min_value = 0)
 
     num_bathrooms = st.slider("Número de baños (aproximado)", 0, 15, 0)
     num_bedrooms = st.slider("Número de habitaciones (aproximado)", 0, 20, 0)
 
-    r1f6 = st.selectbox("Score Propiedad", ("Disrepair", "Poor", "Average", "Good", "Excellent", "Luxury"))
+    score = st.selectbox("Score Propiedad", ("Disrepair", "Poor", "Average", "Good", "Excellent", "Luxury"))
+
+    r1f6 = score_to_r1f6[score]
 
     options = st.multiselect(
     'Otros atributos que valoraría positivamente', features_detected
@@ -78,8 +79,6 @@ def main():
     if st.button("GO"):
         if price == 0:
             st.write("¡Falta el precio!")
-        elif location_string == "":
-            st.write("¡Falta la localización!")
         elif square_meters == 0:
             st.write("¡Faltan la superficie!")
         elif num_bathrooms == 0:
@@ -90,7 +89,9 @@ def main():
         else:  # find ideal house
             new_row = {"square_meters":[square_meters],
             "num_images":[11],
-            "image_data.r1f6.property" : [r1f6 if r1f6 != 0 else 3]}
+            "image_data.r1f6.property" : [r1f6 if r1f6 != 0 else 3],
+            "bedrooms":num_bedrooms,
+            "bathrooms": num_bathrooms}
 
             for el in features_detected:
                 if el in options:
@@ -98,8 +99,7 @@ def main():
                 else:
                     new_row[el] = 0.65
 
-            new_row["logprice"] = np.log(price)
-
+            new_row["price"] = price
             new_row["property_type_numeric"] = 0.5
 
             # list_provinces = return_province(address.longitude, address.latitude)
@@ -114,8 +114,13 @@ def main():
             df = pd.read_csv("final_house_dataframe.csv")
             df = df.drop("Unnamed: 0", axis=1)
 
-            top_five_houses = find_top_five_house(desired_house, df) # retorna la ubicació en el dataframe crec ???
+            top_five_houses = find_top_five_houses(desired_house, df)
             print(top_five_houses)
+
+            indexes = top_five_houses.index
+            indexes = indexes.values.tolist()
+            
+            # here we write info on houses
 
 
 
