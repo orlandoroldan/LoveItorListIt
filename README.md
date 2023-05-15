@@ -1,4 +1,4 @@
-# LoveItorListIt
+# Love It or List It
 
 Nuestra aplicación se centra en facilitar al usuari la compra y venta de casas. Es un problema general que muchas veces cuando vendemos una casa tenemos pensado comprar casi imediamente. Esta aplicación está dividida en dos secciones:
 <ul>
