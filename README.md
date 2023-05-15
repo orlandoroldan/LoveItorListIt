@@ -1,9 +1,9 @@
 # Love It or List It
 
-Nuestra aplicación se centra en facilitar al usuari la compra y venta de casas. Es un problema general que muchas veces cuando vendemos una casa tenemos pensado comprar casi imediamente. Esta aplicación está dividida en dos secciones:
+Nuestra aplicación se centra en facilitar al usuari la compra y venta de casas. Aborda un problema común en el que a menudo, cuando vendemos una casa, también estamos buscando comprar una nueva. Esta aplicación está dividida en dos secciones:
 <ul>
-  <li>Love it: El/La usuario/a pasa la información relacionada con la casa que pretende vender y imágenes realizadas de esta. A través de la API de restbi.ai y un modelo predictorio del precio, se realiza una primera estimación del valor de la casa. Se prosigue a realizar recomendaciones de posibles reformas a realizar para aumentar el precio.</li>
-  <li>List it: El/la usuario/a pasa información relacionada con la casa que pretende comprar y el sistema devuelve las mejores recomendaciones.</li>
+  <li>Love it: En esta sección, el/la usuario/a proporciona información relevante sobre la casa que desea vender, así como imágenes de la misma. Utilizando la API de restbi.ai y un modelo predictivo de precios, se realiza una estimación inicial del valor de la casa. Además, se ofrecen recomendaciones sobre posibles reformas que podrían aumentar su precio de venta.</li>
+  <li>List it: El/la usuario/a pasa información relacionada con la casa que pretende comprar y el sistema analiza estos datos y devuelve las mejores recomendaciones para ayudar al usuario en su proceso de búsqueda.</li>
  </ul>
  
 ![image](https://github.com/orlandoroldan/LoveItorListIt/assets/103830755/89858239-58fa-4f6b-8cbf-3fb946963205)
