@@ -7,7 +7,7 @@ Nuestra aplicación se centra en facilitar al usuari la compra y venta de casas.
   <li>Love it: En esta sección, el/la usuario/a proporciona información relevante sobre la casa que desea vender, así como imágenes de la misma. Utilizando la API de restbi.ai y un modelo predictivo de precios, se realiza una estimación inicial del valor de la casa. Además, se ofrecen recomendaciones sobre posibles reformas que podrían aumentar su precio de venta.</li>
   <li>List it: El/la usuario/a pasa información relacionada con la casa que pretende comprar y el sistema analiza estos datos y devuelve las mejores recomendaciones para ayudar al usuario en su proceso de búsqueda.</li>
  </ul>
- -----------------------
+ ---
  
  This is a project developed at the 2023 HackUPC for the Restb.ai Challenge.
 
